@@ -1,0 +1,33 @@
+{
+  "source_revision": "6546df4996058e7ed88efc0248e619976034f07e",
+  "content_sha256": "9fa3584c3913dfea7da447fdb020080c3c39b335521dfe6e0a44caf6e08d040a",
+  "source_updated": "2026-10-04T20:55:35+07:00",
+  "published_files": [
+    "week-01.md",
+    "week-02.md",
+    "week-03.md",
+    "week-04.md",
+    "week-05.md",
+    "week-06.md",
+    "week-07.md",
+    "week-08.md",
+    "week-09.md",
+    "week-10.md",
+    "week-11.md",
+    "week-12.md"
+  ],
+  "section_counts": {
+    "week-01.md": 7,
+    "week-02.md": 8,
+    "week-03.md": 8,
+    "week-04.md": 10,
+    "week-05.md": 9,
+    "week-06.md": 7,
+    "week-07.md": 6,
+    "week-08.md": 8,
+    "week-09.md": 7,
+    "week-10.md": 8,
+    "week-11.md": 7,
+    "week-12.md": 8
+  }
+}
