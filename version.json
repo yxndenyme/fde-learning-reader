@@ -1,7 +1,9 @@
 {
-  "source_revision": "257f0a9cb4bbbb5f1a14cdbd2aba91db2477831d",
-  "content_sha256": "9fa3584c3913dfea7da447fdb020080c3c39b335521dfe6e0a44caf6e08d040a",
-  "source_updated": "2026-10-04T20:55:35+07:00",
+  "source_revision": "628a812fb5b25236145f0e9b32a41f6088360cce",
+  "content_sha256": "bfb6d8eabdf5796ab88b3b0c9eb223f024c94f0b20ac0a6290b2dc3e4f2efd9a",
+  "question_count": 540,
+  "selected_count": 36,
+  "source_updated": "2026-10-05T15:18:03+07:00",
   "published_files": [
     "week-01.md",
     "week-02.md",
@@ -14,7 +16,19 @@
     "week-09.md",
     "week-10.md",
     "week-11.md",
-    "week-12.md"
+    "week-12.md",
+    "01_AI认知与低代码.md",
+    "02_RAG企业知识库.md",
+    "03_Agent与工具调用.md",
+    "04_客户发现与方案.md",
+    "05_演示与经历表达.md",
+    "06_API质量与可靠性.md",
+    "07_故障定界.md",
+    "08_成本安全与合规.md",
+    "09_评测权限与迭代.md",
+    "10_可观测部署与恢复.md",
+    "11_简历与模拟面试.md",
+    "12_投递与职业决策.md"
   ],
   "section_counts": {
     "week-01.md": 7,
@@ -28,6 +42,18 @@
     "week-09.md": 7,
     "week-10.md": 8,
     "week-11.md": 7,
-    "week-12.md": 8
+    "week-12.md": 8,
+    "01_AI认知与低代码.md": 50,
+    "02_RAG企业知识库.md": 56,
+    "03_Agent与工具调用.md": 41,
+    "04_客户发现与方案.md": 57,
+    "05_演示与经历表达.md": 39,
+    "06_API质量与可靠性.md": 41,
+    "07_故障定界.md": 42,
+    "08_成本安全与合规.md": 38,
+    "09_评测权限与迭代.md": 41,
+    "10_可观测部署与恢复.md": 46,
+    "11_简历与模拟面试.md": 48,
+    "12_投递与职业决策.md": 41
   }
 }
