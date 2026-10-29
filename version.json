@@ -1,9 +1,9 @@
 {
-  "source_revision": "6b5823ab863318f00de65f0a812ae10fb986e1d7",
-  "content_sha256": "523500ac118b37adb548b8c974ef19550bdd4b85c7ddbf8ffd939dbc1192e7c9",
+  "source_revision": "42e2d56f58689e42f907ff2a1c710ef2fa3a7d9c",
+  "content_sha256": "53b9041e7de9e53324970711e9dae5866473eb8ac0d180dfae9e61dc7a3fc64b",
   "question_count": 540,
   "selected_count": 36,
-  "source_updated": "2026-10-25T20:56:36+08:00",
+  "source_updated": "2026-10-29T13:28:08+08:00",
   "published_files": [
     "week-01.md",
     "week-02.md",
