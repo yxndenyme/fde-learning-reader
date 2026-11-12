@@ -6951,7 +6951,7 @@ JD原句：
 <p><strong>变式追问</strong>：Senior FDE和交付经理哪个更适合，能只看名称吗？</p>
 <p><strong>适用边界</strong>：不要采用“千万项目→总监→首席”的通用路径，管理经历不保证晋升。</p>
 </div></section>
-<footer>本页发布12个学习单元与完整题库，提供参考答案、举证方法、变式追问和适用边界。<br>内容最近更新：<time>2026-11-06T14:50:41+08:00</time> · 源版本：<span id="revision">a6f45f43da85255a30c8b37c33d03db87615a4c0</span><br>内容指纹：<span id="content-hash">f7f1ec48e8a197d6831cd348ec5a0d813d1256be44c157687833d32f6e487c07</span><br>在线版会在自动发布完成后更新；已打开的页面请刷新。保存的离线副本不会自动更新。</footer>
+<footer>本页发布12个学习单元与完整题库，提供参考答案、举证方法、变式追问和适用边界。<br>内容最近更新：<time>2026-11-06T14:50:41+08:00</time> · 源版本：<span id="revision">f8def8c203191ff16d17a2577f9623ad866d981a</span><br>内容指纹：<span id="content-hash">f7f1ec48e8a197d6831cd348ec5a0d813d1256be44c157687833d32f6e487c07</span><br>在线版会在自动发布完成后更新；已打开的页面请刷新。保存的离线副本不会自动更新。</footer>
 </main></div><button class="back-top" aria-label="回到顶部" id="top">↑</button>
 <script>
 (()=>{
@@ -6963,16 +6963,40 @@ $('#theme').onclick=()=>{document.documentElement.dataset.theme=document.documen
 $('#menu').onclick=()=>{$('#menu').setAttribute('aria-expanded',String(side.classList.toggle('open')))};
 $('#print').onclick=()=>window.print();$('#top').onclick=()=>window.scrollTo({top:0});
 let view='study',selectedOnly=false;
-function choose(next,selected=false){view=next;selectedOnly=selected;side.classList.remove('open');$('#menu').setAttribute('aria-expanded','false');unit.replaceChildren();const all=document.createElement('option');all.value='all';all.textContent='全部章节';unit.append(all);for(const c of chapters.filter(c=>c.dataset.kind===view)){const op=document.createElement('option');op.value=c.id;op.textContent=c.querySelector('h2').textContent;unit.append(op)}for(const b of document.querySelectorAll('[data-view]'))b.setAttribute('aria-pressed',String(b.dataset.view===view&&!selectedOnly));$('#selected').setAttribute('aria-pressed',String(selectedOnly));groups.forEach(g=>g.classList.toggle('hidden',g.dataset.kind!==view));filter()}
-for(const b of document.querySelectorAll('[data-view]'))b.onclick=()=>{input.value='';choose(b.dataset.view);window.scrollTo({top:0})};$('#selected').onclick=()=>{input.value='';choose('questions',true);window.scrollTo({top:0})};
+const directory=groups.map(group=>({group,links:[...group.querySelectorAll('.subnav a')].map(link=>({link,card:document.getElementById(link.hash.slice(1))?.closest('.card')}))}));
+function choose(next,selected=false){view=next;selectedOnly=selected;side.classList.remove('open');$('#menu').setAttribute('aria-expanded','false');unit.replaceChildren();const all=document.createElement('option');all.value='all';all.textContent='全部章节';unit.append(all);for(const c of chapters.filter(c=>c.dataset.kind===view)){const op=document.createElement('option');op.value=c.id;op.textContent=c.querySelector('h2').textContent;unit.append(op)}for(const b of document.querySelectorAll('[data-view]'))b.setAttribute('aria-pressed',String(b.dataset.view===view&&!selectedOnly));$('#selected').setAttribute('aria-pressed',String(selectedOnly));filter()}
+function switchView(next,selected=false){
+  clearTimeout(timer);input.value='';choose(next,selected);
+  const hash=selected?'#selected-questions':next==='questions'?'#questions':'';
+  history.replaceState(null,'',location.pathname+location.search+hash);
+  side.scrollTop=0;window.scrollTo({top:0,behavior:'instant'});
+}
+for(const b of document.querySelectorAll('[data-view]'))b.onclick=()=>switchView(b.dataset.view);
+$('#selected').onclick=()=>switchView('questions',true);
 for(const table of document.querySelectorAll('.card table')){const wrap=document.createElement('div');wrap.className='table-scroll';wrap.tabIndex=0;wrap.setAttribute('role','region');wrap.setAttribute('aria-label','可横向滚动的表格');table.before(wrap);wrap.append(table)}
 for(const heading of document.querySelectorAll('.card h2[id],.card h3[id]')){const b=document.createElement('button');b.className='copy-link';b.textContent='#';b.setAttribute('aria-label','复制本节链接');b.onclick=async()=>{const url=new URL(location.href);url.hash=heading.id;try{await navigator.clipboard.writeText(url.href);b.textContent='已复制';setTimeout(()=>b.textContent='#',1600)}catch{location.hash=heading.id}};heading.append(b)}
 for(const card of cards)card.dataset.searchText=card.textContent.toLocaleLowerCase();
 function clearMarks(){for(const m of document.querySelectorAll('mark.search-match'))m.replaceWith(document.createTextNode(m.textContent));for(const card of cards)card.normalize()}
 function highlight(card,q){if(!q)return;const walker=document.createTreeWalker(card,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest('button,script,style')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);for(const n of nodes){const text=n.nodeValue,lower=text.toLocaleLowerCase();let from=0,at=lower.indexOf(q);if(at<0)continue;const f=document.createDocumentFragment();while(at>=0){f.append(document.createTextNode(text.slice(from,at)));const m=document.createElement('mark');m.className='search-match';m.textContent=text.slice(at,at+q.length);f.append(m);from=at+q.length;at=lower.indexOf(q,from)}f.append(document.createTextNode(text.slice(from)));n.replaceWith(f)}}
-function filter(){clearMarks();const q=input.value.trim().toLocaleLowerCase();let total=0,visible=0,questions=0;for(const chapter of chapters){let matched=0;const selected=(q||chapter.dataset.kind===view)&&(unit.value==='all'||unit.value===chapter.id);for(const card of chapter.querySelectorAll('.card')){const show=selected&&(!selectedOnly||card.dataset.selected==='true')&&(!q||card.dataset.searchText.includes(q));card.classList.toggle('hidden',!show);if(show){matched++;total++;if(card.dataset.question)questions++;highlight(card,q)}}chapter.classList.toggle('hidden',!matched);if(matched)visible++}groups.forEach(g=>g.classList.toggle('hidden',!q&&g.dataset.kind!==view));$('#status').textContent=q?`${visible} 个章节 · ${total} 处内容匹配`:(view==='questions'?`${visible} 个章节 · ${questions} 道题（含完整答案）`:`${visible} 个单元 · 完整正文`);$('#empty').classList.toggle('hidden',total>0)}
+function filter(){clearMarks();const q=input.value.trim().toLocaleLowerCase();let total=0,visible=0,questions=0;for(const chapter of chapters){let matched=0;const selected=(q||chapter.dataset.kind===view)&&(unit.value==='all'||unit.value===chapter.id);for(const card of chapter.querySelectorAll('.card')){const show=selected&&(!selectedOnly||card.dataset.selected==='true')&&(!q||card.dataset.searchText.includes(q));card.classList.toggle('hidden',!show);if(show){matched++;total++;if(card.dataset.question)questions++;highlight(card,q)}}chapter.classList.toggle('hidden',!matched);if(matched)visible++}
+  for(const {group,links} of directory){
+    const hasSelected=links.some(({card})=>card?.dataset.selected==='true');
+    for(const {link,card} of links)link.classList.toggle('hidden',selectedOnly&&card?.dataset.selected!=='true');
+    group.classList.toggle('hidden',(!q&&group.dataset.kind!==view)||(selectedOnly&&!hasSelected));
+  }
+  $('#status').textContent=q?`${visible} 个章节 · ${total} 处内容匹配`:(view==='questions'?`${visible} 个章节 · ${questions} 道${selectedOnly?'精选':''}题（含完整答案）`:`${visible} 个单元 · 完整正文`);$('#empty').classList.toggle('hidden',total>0);
+}
 let timer;input.oninput=()=>{if(input.value.trim()){unit.value='all';selectedOnly=false;for(const b of document.querySelectorAll('[data-view]'))b.setAttribute('aria-pressed',String(b.dataset.view===view));$('#selected').setAttribute('aria-pressed','false')}clearTimeout(timer);timer=setTimeout(filter,120)};unit.onchange=()=>{filter();window.scrollTo({top:0})};choose('study');
-function followHash(){if(!location.hash)return;const target=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(!target)return;input.value='';const chapter=target.closest('.chapter');choose(chapter?chapter.dataset.kind:(target.id==='questions'||target.id==='selected-questions'?'questions':view),target.id==='selected-questions');target.scrollIntoView({block:'start'});side.classList.remove('open');$('#menu').setAttribute('aria-expanded','false')}
+function followHash(){
+  if(!location.hash)return;
+  const target=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(!target)return;
+  clearTimeout(timer);input.value='';
+  const chapter=target.closest('.chapter'),card=target.closest('.card');
+  const next=chapter?.dataset.kind??(target.id==='questions'||target.id==='selected-questions'?'questions':view);
+  const keepSelected=selectedOnly&&chapter?.dataset.kind==='questions'&&(target===chapter||card?.dataset.selected==='true');
+  choose(next,target.id==='selected-questions'||keepSelected);
+  target.scrollIntoView({block:'start'});
+}
 window.addEventListener('hashchange',followHash);requestAnimationFrame(followHash);
 for(const a of side.querySelectorAll('a'))a.addEventListener('click',()=>{side.classList.remove('open');$('#menu').setAttribute('aria-expanded','false');if(a.hash===location.hash)requestAnimationFrame(followHash)});
 const obs=new IntersectionObserver(entries=>{const e=entries.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top)[0];if(!e)return;const chapter=e.target.closest('.chapter');groups.forEach(g=>g.classList.toggle('active',g.querySelector('.week-link').getAttribute('href')==='#'+chapter.id));document.querySelectorAll('.subnav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))},{rootMargin:'-130px 0px -60% 0px',threshold:0});document.querySelectorAll('.card h2').forEach(h=>obs.observe(h));
