@@ -1,5 +1,5 @@
 {
-  "source_revision": "e10a4a1454ea3b0c470678765cdbbbe52bb5b9f6",
+  "source_revision": "9e1a0f5b0154ba283152c86da5615e67283b22f5",
   "content_sha256": "f05dd2c93dd95a059c0622dc7adfa262c1d28be4824fba4b259fe21ecc67f57a",
   "question_count": 540,
   "selected_count": 36,
@@ -55,5 +55,10 @@
     "10_可观测部署与恢复.md": 46,
     "11_简历与模拟面试.md": 48,
     "12_投递与职业决策.md": 41
-  }
+  },
+  "career_issues": [
+    "2026-11-23",
+    "2026-11-20"
+  ],
+  "career_sha256": "0a52409133637b3dbff0e6ecab3dc35bb6536e1510f19d6947c9077847bd58f9"
 }
