@@ -1,5 +1,5 @@
 {
-  "source_revision": "0127ea676de55bab098d7851beecbc2edb9044a6",
+  "source_revision": "686c910e1ff371b1b2643ef76979720c4205849a",
   "content_sha256": "813a6a442703ece25842d47be523ed72551918bd84ae01e377a32355d6a50036",
   "question_count": 540,
   "selected_count": 36,
@@ -60,5 +60,5 @@
     "2026-11-23",
     "2026-11-20"
   ],
-  "career_sha256": "0a52409133637b3dbff0e6ecab3dc35bb6536e1510f19d6947c9077847bd58f9"
+  "career_sha256": "a55d85d3b50032b353e5cb2f933f8ca686ba472f89e42d62ead5ecfb89b3dec0"
 }
